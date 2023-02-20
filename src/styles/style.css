@@ -5,27 +5,27 @@
 
 @font-face {
     font-family: 'roboto';
-    src: url('./fonts/roboto/Roboto-Regular.ttf') format('truetype');
+    src: url('../fonts/roboto/Roboto-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'roboto';
-    src: url('./fonts/roboto/Roboto-Bold.ttf') format('truetype');
+    src: url('../fonts/roboto/Roboto-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'dancing-script';
-    src: url('./fonts/Dancing_Script/static/DancingScript-Regular.ttf') format('truetype');
+    src: url('../fonts/Dancing_Script/static/DancingScript-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'dancing-script';
-    src: url('./fonts/Dancing_Script/static/DancingScript-Bold.ttf') format('truetype');
+    src: url('../fonts/Dancing_Script/static/DancingScript-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
@@ -47,3 +47,11 @@ body{
     color: white;
 }
 
+.container{
+    width: 85%;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+@import url(helloScreenStyles.css);
+@import url(offerSectionStyles.css);

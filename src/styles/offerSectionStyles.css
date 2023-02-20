@@ -1,0 +1,67 @@
+.offer{
+    padding: 100px 0;
+}
+
+.offer .grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    gap: 30px; 
+}
+
+.offer .grid-container .grid-items{
+    display: flex;
+    gap: 25px;
+    background-color: var(--black-color);
+    border-radius: 6px;
+    padding: 20px 15px;
+    align-items: center;
+}
+
+.offer .grid-container .grid-items .img-box{
+    border: 5px solid var(--yellow-color);
+    border-radius: 50%;
+    overflow: hidden;
+}   
+
+.offer .grid-container .grid-items:hover .img-box img{
+    transition: 500ms;
+    transform: scale(1.1);
+}
+
+.offer .grid-container .img-box img{
+    width: 165px;
+    height: 165px;
+}
+
+.offer .grid-container .detail-box h5,
+.offer .grid-container .detail-box h6{
+    margin: 20px 0;
+    font-size: 1.6rem;
+    font-family: 'dancing-script';
+    font-weight: 400;
+}
+
+.offer .grid-container .detail-box h6 > span{
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.offer .grid-container .detail-box button{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+@media only screen and (max-width: 1100px){
+    .offer .grid-container{
+        grid-template-columns: min(80%,440px);
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 640px){
+    .offer .grid-container .grid-items{
+        flex-direction: column;
+        text-align: center;
+    }
+}
