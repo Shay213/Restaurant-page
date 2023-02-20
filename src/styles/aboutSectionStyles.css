@@ -1,0 +1,41 @@
+.about{
+    background-color: var(--black-color);
+    padding: 90px 0;
+}
+
+.about .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.about img{
+    max-width: 445px;
+}
+
+.about h2{
+    font-family: 'dancing-script';
+    font-weight: 700;
+    font-size: 2.4rem;
+    margin: 0;
+}
+
+.about p{
+    line-height: 1.5rem;
+    max-width: 72ch;
+}
+
+.about button{
+    padding: 12px 40px;
+    margin-top: 15px;
+}
+
+@media only screen and (max-width: 900px){
+    .about .container{
+        flex-wrap: wrap;
+    }
+    .about img{
+        order: 2;
+    }
+}

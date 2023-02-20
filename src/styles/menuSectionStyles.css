@@ -1,0 +1,100 @@
+.menu{
+    padding-bottom: 80px;
+}
+
+.menu h2{
+    color: black;
+    font-family: 'dancing-script';
+    font-weight: 700;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.menu ul{
+    color: black;
+    list-style: none;
+    padding: 0;
+    width: max-content;
+    margin: 0 auto;
+    display: flex;
+    gap: 5px;
+    margin-top: 50px;
+}
+
+.menu ul li{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 40px;
+}
+
+.menu ul li.active{
+    background-color: var(--black-color);
+    color: white;
+}
+
+.menu .grid-container{
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 40px 0;
+}
+
+.menu .grid-items{
+    transition: transform 500ms;
+}
+
+.menu .grid-items .img-box{
+    background-color: #f1f2f3;
+    height: 215px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px 14px 0 0;
+}
+
+.menu .grid-items:hover .img-box img{
+    transition: transform 500ms;
+    transform: scale(1.1);
+}
+
+.menu .grid-items .img-box img{
+    max-width: 195px;
+    max-height: 180px;
+    transition: transform 500ms;
+}
+
+.menu .grid-items .detail-box{
+    background-color: var(--black-color);
+    padding: 25px;
+    border-radius: 0 0 14px 14px;
+}
+
+.menu .grid-items .detail-box h5{
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.menu .grid-items .detail-box .options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu .grid-items .detail-box .options h6{
+    margin: 0;
+    font-size: 1rem;
+}
+
+.menu .grid-items .detail-box .options a{
+    background-color: var(--yellow-color);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu .btn{
+    display: block;
+    margin: 0 auto;
+    padding: 10px 55px;
+}

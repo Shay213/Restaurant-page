@@ -1,8 +1,11 @@
 import './styles/style.css';
-import homePageLoad from './homePageLoad';
+import helloAreaLoad from './helloAreaLoad';
+import offerSectionLoad from './offerSectionLoad';
+import menuSectionLoad from './menuSectionLoad';
+import aboutSectionLoad from './aboutSectionLoad';
 
-const element = document.getElementById('content');
 
-
-
-homePageLoad.createHomePage();
+helloAreaLoad();
+offerSectionLoad();
+menuSectionLoad();
+aboutSectionLoad();
