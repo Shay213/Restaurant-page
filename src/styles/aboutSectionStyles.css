@@ -39,3 +39,9 @@
         order: 2;
     }
 }
+
+@media only screen and (max-width: 485px){
+    .about img{
+        max-width: 345px;
+    }
+}

@@ -49,26 +49,125 @@ const clientSectionLoad = (function(){
         const wrapper = document.querySelector('.client-section .wrapper');
         const flexContainer = document.querySelector('.client-section .flex-container');
         const [...flexItems] = flexContainer.querySelectorAll('.flex-container > div');
-        const flexContainerWidth = flexContainer.offsetWidth;
         const leftArrow = document.querySelector('.client-section .controls-box .left-arrow');
         const rightArrow = document.querySelector('.client-section .controls-box .right-arrow');
-        let startPos = -(flexContainerWidth + 20);
+        let gap = 20;
+        let startPos = () => -flexContainer.offsetWidth - 20;
         let lastItemIndex = flexItems.length-1;
         let firstItemIndex = 0;
-
-        //turn left or right by one flex item
-        const turnLeft = -(flexContainerWidth/2) - 10;
-        const turnRight = (flexContainerWidth/2) + 10;
+        let screenWidthAbove1310;
+        let screenWidthBelow980;
+        let screenWidthMiddle;
+        let screenBelow610;
+        let once = true;
 
         //initial slider items position
-        flexItems.forEach(el => el.style.transform = `translate(${startPos}px)`);
+        flexItems.forEach(el => el.style.transform = `translate(${startPos()}px)`);
 
-        let once = true;
-        leftArrow.addEventListener('click', moveItemsArrows.bind({direction: turnRight}));
-        rightArrow.addEventListener('click', moveItemsArrows.bind({direction: turnLeft}));
+        screenSize();
+        leftArrow.addEventListener('click', moveItemsArrows.bind({direction: 1}));
+        rightArrow.addEventListener('click', moveItemsArrows.bind({direction: -1}));
         moveItemsMouse();
-        let intervalID = null;
+        
+        var rTime;
+        var timeOut = false;
+        var delta = 200;
+        window.addEventListener('resize', resize);
 
+        function resize(e){
+            intervalManager(false, moveItemsLeft, 5000);
+            if(screenWidthAbove1310){
+                if (window.matchMedia("(max-width: 1310px)").matches) {
+                    screenWidthAbove1310 = false;
+                    screenWidthMiddle = true;
+                    screenWidthBelow980 = false;
+                    screenBelow610 = false;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '800px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 calc((100% - 20px)/2);`);
+                }
+            }
+            else if(screenWidthMiddle){
+                if (window.matchMedia("(min-width: 1310px)").matches) {
+                    screenWidthAbove1310 = true;
+                    screenWidthMiddle = false;
+                    screenWidthBelow980 = false;
+                    screenBelow610 = false;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '1100px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 calc((100% - 20px)/2);`);
+                }
+                else if(window.matchMedia("(max-width: 980px)").matches){
+                    screenWidthAbove1310 = false;
+                    screenWidthMiddle = false;
+                    screenWidthBelow980 = true;
+                    screenBelow610 = false;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '500px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 100%;`);
+                }
+            }
+            else if(screenWidthBelow980){
+                if (window.matchMedia("(min-width: 981px)").matches) {
+                    screenWidthAbove1310 = false;
+                    screenWidthMiddle = true;
+                    screenWidthBelow980 = false;
+                    screenBelow610 = false;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '800px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 calc((100% - 20px)/2);`);
+                }
+                else if(window.matchMedia("(max-width: 610px)").matches){
+                    screenWidthAbove1310 = false;
+                    screenWidthMiddle = false;
+                    screenWidthBelow980 = false;
+                    screenBelow610 = true;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '300px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 100%;`);
+                }
+            }
+            else if(screenBelow610){
+                if(window.matchMedia("(min-width: 611px)").matches){
+                    screenWidthAbove1310 = false;
+                    screenWidthMiddle = false;
+                    screenWidthBelow980 = true;
+                    screenBelow610 = false;
+                    lastItemIndex = flexItems.length-1;
+                    firstItemIndex = 0;
+                    once = true;
+                    flexContainer.style.width = '500px';
+                    flexItems.forEach(el => el.style.cssText = `transform: translate(${startPos()}px); transition: transform 0ms; flex: 0 0 100%;`);
+                }
+            }
+
+            rTime = new Date();
+            if (timeOut === false) {
+                timeOut = true;
+                setTimeout(resizeEnd, delta);
+            }
+        };
+
+        function resizeEnd() {
+            if (new Date() - rTime < delta) {
+                setTimeout(resizeEnd, delta);
+            } else {
+                timeOut = false;
+                intervalManager(true, moveItemsLeft, 5000);
+            }               
+        }
+
+        let intervalID = null;
         intervalManager(true, moveItemsLeft, 5000);
 
         function intervalManager(flag, animate, time){
@@ -78,6 +177,29 @@ const clientSectionLoad = (function(){
                 clearInterval(intervalID);
             }
         }
+
+        function screenSize(){
+            if (window.matchMedia("(max-width: 1310px)").matches) {
+                screenWidthAbove1310 = false;
+                if(window.matchMedia("(max-width: 610px)").matches){
+                    screenWidthBelow980 = false;
+                    screenWidthMiddle = false;
+                    screenBelow610 = true;
+                }
+                else if (window.matchMedia("(max-width: 980px)").matches){
+                    screenWidthBelow980 = true;
+                    screenWidthMiddle = false;
+                    screenBelow610 = false;
+                }
+                else{
+                    screenWidthBelow980 = false;
+                    screenWidthMiddle = true;
+                    screenBelow610 = false;
+                }
+            } else {
+                screenWidthAbove1310 = true;
+            }
+        }
         
         function moveItemsArrows(e){
             intervalManager(false, moveItemsLeft, 5000);
@@ -85,10 +207,11 @@ const clientSectionLoad = (function(){
             flexItems.forEach((el, i) => {
                 const transformStyle = el.style.transform;
                 const translateX = +transformStyle.replace(/[^\d.-]/g, '');
+                const width = el.clientWidth + gap;
                 
                 if(lastItemIndex === i && this.direction > 0 && once){
                     once = false;
-                    el.style.cssText = `transform: translate(${translateX + turnLeft*5}px); transition: transform 0ms;`;
+                    el.style.cssText = `transform: translate(${translateX - width*(flexItems.length-1)}px); transition: transform 0ms;`;
                     firstItemIndex = lastItemIndex;
                     lastItemIndex--;
                     if(lastItemIndex === -1) lastItemIndex = flexItems.length-1; 
@@ -96,14 +219,14 @@ const clientSectionLoad = (function(){
                 }
                 else if(firstItemIndex === i && this.direction < 0 && once){
                     once = false;
-                    el.style.cssText = `transform: translate(${translateX + turnRight*5}px); transition: transform 0ms;`;
+                    el.style.cssText = `transform: translate(${translateX + width*(flexItems.length-1)}px); transition: transform 0ms;`;
                     lastItemIndex = firstItemIndex;
                     firstItemIndex++;
                     if(firstItemIndex === flexItems.length) firstItemIndex = 0; 
                     return;
                 }
                 
-                el.style.cssText = `transform: translate(${translateX + this.direction}px); transition: transform 500ms;`;
+                el.style.cssText = `transform: translate(${translateX + (this.direction * width)}px); transition: transform 500ms;`;
             });
             intervalManager(true, moveItemsLeft, 5000);
         }
@@ -113,57 +236,57 @@ const clientSectionLoad = (function(){
             flexItems.forEach((el, i) => {
                 const transformStyle = el.style.transform;
                 const translateX = +transformStyle.replace(/[^\d.-]/g, '');
+                const width = el.clientWidth + gap;
 
                 if(firstItemIndex === i && once){
                     once = false;
-                    el.style.cssText = `transform: translate(${translateX + turnRight*5}px); transition: transform 0ms;`;
+                    el.style.cssText = `transform: translate(${translateX + width*5}px); transition: transform 0ms;`;
                     lastItemIndex = firstItemIndex;
                     firstItemIndex++;
                     if(firstItemIndex === flexItems.length) firstItemIndex = 0; 
                     return;
                 }
 
-                el.style.cssText = `transform: translate(${translateX + turnLeft}px); transition: transform 500ms;`;
+                el.style.cssText = `transform: translate(${translateX - width}px); transition: transform 500ms;`;
             });
         }
 
         function moveItemsMouse(){
             let isPressed = false;
             let startX;
-            let translateX;
             let allItemsTranslateX = [];
             let previous = 0;
             
-            wrapper.addEventListener('mousedown', e => {
+            flexContainer.addEventListener('mousedown', e => {
+                if(e.button != 0) return;
                 isPressed = true;
                 intervalManager(false, moveItemsLeft, 5000);
-                startX = e.pageX - wrapper.offsetLeft;
-                wrapper.style.transform = 'scale(1.03)';
-                wrapper.style.cursor = 'grabbing';
-                const transformStyle = flexItems[0].style.transform;
-                translateX = +transformStyle.replace(/[^\d.-]/g, '');
+                startX = e.pageX - flexContainer.offsetLeft;
+                flexContainer.style.transform = 'scale(1.03)';
+                flexContainer.style.cursor = 'grabbing';
                 flexItems.forEach((el, i) => {
                     const transformStyle = flexItems[i].style.transform;
                     allItemsTranslateX.push(+transformStyle.replace(/[^\d.-]/g, ''));
                 });
             });
 
-            wrapper.addEventListener('mousemove', e => {
+            flexContainer.addEventListener('mousemove', e => {
                 if(!isPressed) return;
                 e.preventDefault();
-                const x = e.pageX - wrapper.offsetLeft;
+                const x = e.pageX - flexContainer.offsetLeft;
                 const walk = x - startX;
 
-                if(previous != Math.floor((walk / turnRight))){
+                if(previous != Math.floor((walk / (flexItems[0].clientWidth+gap)))){
                     once = true;
-                    previous = Math.floor((walk / turnRight));
+                    previous = Math.floor((walk / (flexItems[0].clientWidth+gap)));
                 }
 
                 flexItems.forEach((el, i) => {
+                    const width = el.clientWidth + gap;
                     if(lastItemIndex === i && walk >= 80  && once){
                         once = false;
-                        el.style.cssText = `transform: translate(${allItemsTranslateX[i] + turnLeft*6}px); transition: transform 0ms;`;
-                        allItemsTranslateX[i] = allItemsTranslateX[i] + turnLeft*6;
+                        el.style.cssText = `transform: translate(${allItemsTranslateX[i] - width*6}px); transition: transform 0ms;`;
+                        allItemsTranslateX[i] = allItemsTranslateX[i] - width*6;
                         firstItemIndex = lastItemIndex;
                         lastItemIndex--;
                         if(lastItemIndex === -1) lastItemIndex = flexItems.length-1; 
@@ -171,8 +294,8 @@ const clientSectionLoad = (function(){
                     }
                     else if(firstItemIndex === i && walk <= -80 && once){
                         once = false;
-                        el.style.cssText = `transform: translate(${allItemsTranslateX[i] + turnRight*6}px); transition: transform 0ms;`;
-                        allItemsTranslateX[i] = allItemsTranslateX[i] + turnRight*6;
+                        el.style.cssText = `transform: translate(${allItemsTranslateX[i] + width*6}px); transition: transform 0ms;`;
+                        allItemsTranslateX[i] = allItemsTranslateX[i] + width*6;
                         lastItemIndex = firstItemIndex;
                         firstItemIndex++;
                         if(firstItemIndex === flexItems.length) firstItemIndex = 0; 
@@ -183,12 +306,12 @@ const clientSectionLoad = (function(){
                 });
             });
 
-            wrapper.addEventListener('mouseup', e => {
+            flexContainer.addEventListener('mouseup', e => {
                 if(!isPressed) return;
                 intervalManager(true, moveItemsLeft, 5000);
                 isPressed = false;
-                wrapper.style.transition = 'transform 400ms';
-                wrapper.style.transform = 'scale(1)';
+                flexContainer.style.transition = 'transform 400ms';
+                flexContainer.style.transform = 'scale(1)';
                 once = true;
                 let previous = 0;
 
@@ -196,12 +319,12 @@ const clientSectionLoad = (function(){
                 allItemsTranslateX = [];
             });
 
-            wrapper.addEventListener('mouseleave', e => {
+            flexContainer.addEventListener('mouseleave', e => {
                 if(!isPressed) return;
                 intervalManager(true, moveItemsLeft, 5000);
                 isPressed = false;
-                wrapper.style.transition = 'transform 400ms';
-                wrapper.style.transform = 'scale(1)';
+                flexContainer.style.transition = 'transform 400ms';
+                flexContainer.style.transform = 'scale(1)';
                 once = true;
                 let previous = 0;
         
@@ -211,13 +334,14 @@ const clientSectionLoad = (function(){
 
             function findRightPositionForItems(e){
                 // how many px from startX
-                let endX = (e.pageX - wrapper.offsetLeft) - startX;
+                let endX = (e.pageX - flexContainer.offsetLeft) - startX;
                 flexItems.forEach((el, i) => {
+                    const width = el.clientWidth + gap;
                     allItemsTranslateX[i] += endX;
                     let rightTranslatePosition;
-                    if(endX < -80) rightTranslatePosition = Math.floor(allItemsTranslateX[i] / turnRight)*560; 
-                    else if(endX > 80) rightTranslatePosition = Math.ceil(allItemsTranslateX[i] / turnRight)*560;
-                    else rightTranslatePosition = Math.round(allItemsTranslateX[i] / turnRight)*560;
+                    if(endX < -80) rightTranslatePosition = Math.floor(allItemsTranslateX[i] / width)*width; 
+                    else if(endX > 80) rightTranslatePosition = Math.ceil(allItemsTranslateX[i] / width)*width;
+                    else rightTranslatePosition = Math.round(allItemsTranslateX[i] / width)*width;
                     el.style.cssText = `transform: translate(${rightTranslatePosition}px); transition: transform 400ms;`;
                 });
             }
