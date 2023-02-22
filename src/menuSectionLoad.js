@@ -88,9 +88,13 @@ const menuSectionLoad = (function(){
         btn.textContent = 'View More';
     };
 
-    _createMenuSection();
+    const init = function(){
+        _createMenuSection();
+    };
 
-    return {};
+    return {
+        init,
+    };
 
 })();
 

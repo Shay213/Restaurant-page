@@ -17,9 +17,13 @@ const aboutSectionLoad = (function(){
         button.textContent = 'Read More';
     };
 
-    _createAboutSection();
+    const init = function(){
+        _createAboutSection();
+    };
 
-    return {};
+    return {
+        init,
+    };
 })();
 
 export default aboutSectionLoad

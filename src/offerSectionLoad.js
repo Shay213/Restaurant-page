@@ -29,9 +29,13 @@ const offerSectionLoad = (function(){
         });
     };
     
-    _createOfferSection();
+    const init = function(){
+        _createOfferSection();
+    };
     
-    return {};
+    return {
+        init,
+    };
     
 })();
 

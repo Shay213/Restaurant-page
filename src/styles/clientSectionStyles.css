@@ -1,0 +1,88 @@
+.client-section{
+    padding-bottom: 80px;
+}
+
+.client-section h1{
+    color: black;
+    font-family: 'dancing-script';
+    font-size: 2.3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.client-section .wrapper{
+    overflow: hidden;
+}
+
+.client-section .flex-container{
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.client-section .flex-items{
+    flex: 0 0 calc(50% - 10px);
+}
+
+.client-section .text-box{
+    background-color: var(--black-color);
+    border-radius: 7px;
+    padding: 25px 25px 15px 25px;
+}
+
+.client-section .text-box p{
+    max-width: 72ch;
+}
+
+.client-section .text-box p:last-child{
+    margin-top: 8px;
+}
+
+.client-section .text-box h6{
+    font-size: 1rem;
+    margin: 0;
+    margin-top: 25px;
+}
+
+.client-section .img-box{
+    margin-top: 30px;
+    width: max-content;
+    position: relative;
+}
+
+.client-section .img-box::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    transform: translate(-50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-color: var(--yellow-color);
+    z-index: -10;
+}
+
+.client-section .img-box > img{
+    width: 115px;
+    height: 115px;
+    border: 5px solid var(--yellow-color);
+    border-radius: 50%;
+}
+
+.client-section .controls-box{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 45px;
+}
+
+.client-section .controls-box > div{
+    background-color: var(--yellow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+}
+

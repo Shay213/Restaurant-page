@@ -100,7 +100,6 @@ const helloAreaLoad = (function (){
         });
 
         function sliderInterval(index = 1){
-            console.log(index);
             let interval = setInterval(() => {
                 let activeElIndex = sliderElements.findIndex(el => el === activeSliderEl);
                 if(activeElIndex >= sliderElements.length-1){
@@ -131,10 +130,14 @@ const helloAreaLoad = (function (){
         }
     };
 
-    _createHeaderAndSlider();
-    _animateSlider();
+    const init = function(){
+        _createHeaderAndSlider();
+        _animateSlider();
+    };
 
-    return {};
+    return {
+        init,
+    };
 })();
 
 export default helloAreaLoad 
