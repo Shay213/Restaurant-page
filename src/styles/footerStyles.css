@@ -1,0 +1,97 @@
+.footer{
+    background-color: var(--black-color);
+    padding: 75px 0 40px 0;
+}
+
+.footer .flex-container{
+    display: flex;
+}
+
+.footer .flex-items{
+    flex: 1 1 190px;
+    text-align: center;
+}
+
+.footer .flex-items > h4{
+    margin: 0;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+.footer .flex-items p{
+    font-size: 1rem;
+}
+
+.footer .flex-items .a-feane{
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2.3rem;
+}
+
+.footer .flex-items h4,
+.footer .flex-items .a-feane{
+    font-family: 'dancing-script';
+}
+
+.footer .flex-items:first-child > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.footer .flex-items:nth-child(2) p{
+    max-width: 62ch;
+    margin: 0 auto;
+    line-height: 1.4rem;
+}
+
+.footer .icons-box{
+    font-weight: 400;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer .flex-items p{
+    margin: 8px 0;
+}
+.footer .flex-items:first-child div:first-of-type{
+    margin-top: 20px;
+}
+.footer .flex-items:nth-child(2) p{
+    margin-top: 18px;
+}
+
+.footer .flex-items:last-child p:first-of-type{
+    margin-top: 25px;
+}
+
+.footer .container > p{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer a:hover img{
+    color: var(--yellow-color);
+    filter: invert(78%) sepia(89%) saturate(1273%) hue-rotate(329deg) brightness(101%) contrast(101%);
+}
+
+.footer .copyright a{
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+}
+
+.footer .copyright a:hover{
+    border-color: var(--yellow-color);
+    transition: 400ms;
+}
+
+@media only screen and (max-width: 900px){
+    .footer .flex-container{
+        flex-direction: column;
+    }
+}
