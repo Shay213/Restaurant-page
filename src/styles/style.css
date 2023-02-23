@@ -53,6 +53,11 @@ body{
     max-width: 1100px;
 }
 
+.icons-small{
+    width: 23px;
+    height: 23px;
+}
+
 @import url(helloScreenStyles.css);
 @import url(offerSectionStyles.css);
 @import url(menuSectionStyles.css);

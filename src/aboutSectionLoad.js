@@ -1,4 +1,5 @@
 import createElement from "./createElement";
+import img from './img/about-img.png';
 
 const aboutSectionLoad = (function(){
     const content = document.getElementById('content');
@@ -6,7 +7,9 @@ const aboutSectionLoad = (function(){
     const _createAboutSection = function(){
         const about = createElement({htmlElement: 'div', parent: content, attr: [['class', 'about']]});
         const container = createElement({htmlElement: 'div', parent: about, attr: [['class', 'container']]});
-        const img = createElement({htmlElement: 'img', parent: container, attr: [['src', '../src/img/about-img.png']]});
+        const myImg = new Image();
+        myImg.src = img;
+        container.appendChild(myImg);
         const textContainer = createElement({htmlElement: 'div', parent: container});
         const h2 = createElement({htmlElement: 'h2', parent: textContainer});
         const p = createElement({htmlElement: 'p', parent: textContainer});

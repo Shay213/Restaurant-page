@@ -1,5 +1,7 @@
 import createElement from "./createElement";
 import person from './img/icons/person.svg';
+import shopping from './img/icons/shopping-cart.svg';
+import search from './img/icons/search.svg';
 
 const helloAreaLoad = (function (){
     const content = document.getElementById('content');
@@ -41,10 +43,18 @@ const helloAreaLoad = (function (){
 
             li1.classList.add('active');
             const iconPerson = new Image();
+            const iconShopping = new Image();
+            const iconSearch = new Image();
             iconPerson.src = person;
+            iconShopping.src = shopping;
+            iconSearch.src = search;
+            iconPerson.setAttribute('class', 'filter-white icons-small');
+            iconShopping.setAttribute('class', 'filter-white icons-small');
+            iconSearch.setAttribute('class', 'filter-white icons-small');
+
             a1.appendChild(iconPerson);
-            a2.innerHTML = '<img class="filter-white" src="../src/img/icons/shopping-cart.svg" width="23px" height="23px"/>';
-            a3.innerHTML = '<img class="filter-white" src="../src/img/icons/search.svg" width="23px" height="23px"/>';
+            a2.appendChild(iconShopping);
+            a3.appendChild(iconSearch);
         }
 
         function createSliderElements(){

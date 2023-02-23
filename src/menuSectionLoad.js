@@ -1,4 +1,14 @@
 import createElement from "./createElement"
+import shopping from './img/icons/shopping-cart.svg';
+import f1 from './img/f1.png';
+import f2 from './img/f2.png';
+import f3 from './img/f3.png';
+import f4 from './img/f4.png';
+import f5 from './img/f5.png';
+import f6 from './img/f6.png';
+import f7 from './img/f7.png';
+import f8 from './img/f8.png';
+import f9 from './img/f9.png';
 
 const menuSectionLoad = (function(){
     const content = document.getElementById('content');
@@ -26,7 +36,8 @@ const menuSectionLoad = (function(){
                     'Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque',
                 ],
             price: ['20', '15', '17', '18', '10', '15', '12', '14', '18'],
-            type: ['pizza', 'burger', 'pizza', 'pasta', 'fries', 'pizza', 'burger', 'burger', 'pasta']
+            type: ['pizza', 'burger', 'pizza', 'pasta', 'fries', 'pizza', 'burger', 'burger', 'pasta'],
+            imgSrc: [f1, f2, f3, f4, f5, f6, f7, f8, f9]
         };
     
         h2.textContent = 'Our Menu';
@@ -42,7 +53,10 @@ const menuSectionLoad = (function(){
             el.setAttribute('data-mealType', `${gridItemsContent.type[i]}`);
     
             const imgBox = createElement({htmlElement: 'div', parent: el, attr: [['class', 'img-box']]});
-            const img = createElement({htmlElement: 'img', parent: imgBox, attr: [['src', `../src/img/f${i+1}.png`]]});
+            const img = new Image();
+            img.src = gridItemsContent.imgSrc[i];
+            imgBox.appendChild(img);
+            //const img = createElement({htmlElement: 'img', parent: imgBox, attr: [['src', `../src/img/f${i+1}.png`]]});
             const detailBox = createElement({htmlElement: 'div', parent: el, attr: [['class', 'detail-box']]});
             const h5 = createElement({htmlElement: 'h5', parent: detailBox});
             const p = createElement({htmlElement: 'p', parent: detailBox});
@@ -53,7 +67,11 @@ const menuSectionLoad = (function(){
             h5.textContent = `${gridItemsContent.title[i]}`;
             p.textContent = `${gridItemsContent.text[i]}`;
             price.textContent = `$${gridItemsContent.price[i]}`;
-            a.innerHTML = '<img class="filter-white" src="../src/img/icons/shopping-cart.svg" width="23px" height="23px"/>';
+            const shoppingIcon = new Image();
+            shoppingIcon.src = shopping;
+            shoppingIcon.setAttribute('class', 'filter-white icons-small');
+            a.appendChild(shoppingIcon);
+            //a.innerHTML = '<img class="filter-white" src="../src/img/icons/shopping-cart.svg" width="23px" height="23px"/>';
         });
     
         let activeMenuEl = li1;

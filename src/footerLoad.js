@@ -1,4 +1,11 @@
 import createElement from "./createElement";
+import locationI from './img/icons/location.svg';
+import phoneI from './img/icons/call.svg';
+import emailI from './img/icons/mail.svg';
+import fbI from './img/icons/facebook.svg';
+import twI from './img/icons/twitter.svg';
+import innI from './img/icons/linkedin.svg';
+import instI from './img/icons/instagram.svg';
 
 const footerLoad = (function(){
     const content = document.getElementById('content');
@@ -12,15 +19,24 @@ const footerLoad = (function(){
         const h4Contact = createElement({htmlElement: 'h4', parent: item1});
         const location = createElement({htmlElement: 'div', parent: item1});
         const aLocation = createElement({htmlElement: 'a', parent: location, attr: [['href', '#']]});
-        const iconLocation = createElement({htmlElement: 'img', parent: aLocation, attr: [['src', '../src/img/icons/location.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
+        const icon1 = new Image();
+        icon1.src = locationI;
+        icon1.setAttribute('class', 'filter-white icons-small');
+        aLocation.appendChild(icon1);
         const pLocation = createElement({htmlElement: 'p', parent: location});
         const phone = createElement({htmlElement: 'div', parent: item1});
         const aPhone = createElement({htmlElement: 'a', parent: phone, attr: [['href', '#']]});
-        const iconPhone = createElement({htmlElement: 'img', parent: aPhone, attr: [['src', '../src/img/icons/call.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
+        const icon2 = new Image();
+        icon2.src = phoneI;
+        icon2.setAttribute('class', 'filter-white icons-small');
+        aPhone.appendChild(icon2);
         const pPhone = createElement({htmlElement: 'p', parent: phone});
         const email = createElement({htmlElement: 'div', parent: item1});
         const aEmail = createElement({htmlElement: 'a', parent: email, attr: [['href', '#']]});
-        const iconEmail = createElement({htmlElement: 'img', parent: aEmail, attr: [['src', '../src/img/icons/mail.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
+        const icon3 = new Image();
+        icon3.src = emailI;
+        icon3.setAttribute('class', 'filter-white icons-small');
+        aEmail.appendChild(icon3);
         const pEmail = createElement({htmlElement: 'p', parent: email});
 
         h4Contact.textContent = 'Contact Us';
@@ -36,10 +52,22 @@ const footerLoad = (function(){
         const aTw = createElement({htmlElement: 'a', parent: iconsBox, attr: [['href', '#']]});
         const aInn = createElement({htmlElement: 'a', parent: iconsBox, attr: [['href', '#']]});
         const aInsta = createElement({htmlElement: 'a', parent: iconsBox, attr: [['href', '#']]});
-        const fb = createElement({htmlElement: 'img', parent: aFb, attr: [['src', '../src/img/icons/facebook.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
-        const tw = createElement({htmlElement: 'img', parent: aTw, attr: [['src', '../src/img/icons/twitter.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
-        const inn = createElement({htmlElement: 'img', parent: aInn, attr: [['src', '../src/img/icons/linkedin.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
-        const insta = createElement({htmlElement: 'img', parent: aInsta, attr: [['src', '../src/img/icons/instagram.svg'], ['class', 'filter-white'], ['width', '23px'], ['height', '23px']]});
+        const icon4 = new Image();
+        icon4.src = fbI;
+        icon4.setAttribute('class', 'filter-white icons-small');
+        aFb.appendChild(icon4);
+        const icon5 = new Image();
+        icon5.src = twI;
+        icon5.setAttribute('class', 'filter-white icons-small');
+        aTw.appendChild(icon5);
+        const icon6 = new Image();
+        icon6.src = innI;
+        icon6.setAttribute('class', 'filter-white icons-small');
+        aInn.appendChild(icon6);
+        const icon7 = new Image();
+        icon7.src = instI;
+        icon7.setAttribute('class', 'filter-white icons-small');
+        aInsta.appendChild(icon7);
 
         aFeane.textContent = 'Feane';
         pFeane.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum efficitur odio quis placerat. Proin augue libero, congue vel tincidunt.';

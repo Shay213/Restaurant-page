@@ -1,4 +1,8 @@
 import createElement from "./createElement";
+import client1 from './img/client1.jpg';
+import client2 from './img/client2.jpg';
+import arrowL from './img/icons/left.svg';
+import arrowR from './img/icons/right.svg';
 
 const clientSectionLoad = (function(){
     const content = document.getElementById('content');
@@ -29,18 +33,31 @@ const clientSectionLoad = (function(){
 
             const div = createElement({htmlElement: 'div', parent: el, attr: [['class', 'img-box']]});
             if((i+1) % 2){
-                const img = createElement({htmlElement: 'img', parent: div, attr: [['src', '../src/img/client2.jpg']]});
+                const img1 = new Image();
+                img1.src = client2;
+                div.appendChild(img1);
             }
             else{
-                const img = createElement({htmlElement: 'img', parent: div, attr: [['src', '../src/img/client1.jpg']]});
+                const img2 = new Image();
+                img2.src = client1;
+                div.appendChild(img2);
             }
         });
 
         const controlsDiv = createElement({htmlElement: 'div', parent: container, attr: [['class', 'controls-box']]});
         const leftArrow = createElement({htmlElement: 'div', parent: controlsDiv, attr: [['class', 'left-arrow']]});
-        const img1 = createElement({htmlElement: 'img', parent: leftArrow, attr: [['src', '../src/img/icons/left.svg'], ['class', 'filter-white'], ['width', '33px'], ['height', '33px']]});
-        const rightArrow = createElement({htmlElement: 'div', parent: controlsDiv, attr: [['class', 'right-arrow']]});  
-        const img2 = createElement({htmlElement: 'img', parent: rightArrow, attr: [['src', '../src/img/icons/right.svg'], ['class', 'filter-white'], ['width', '33px'], ['height', '33px']]}); 
+        const imgArrowLeft = new Image();
+        imgArrowLeft.src = arrowL;
+        imgArrowLeft.setAttribute('class', 'filter-white');
+        imgArrowLeft.style.cssText = 'width: 33px; height: 33px;';
+        leftArrow.appendChild(imgArrowLeft);
+        
+        const rightArrow = createElement({htmlElement: 'div', parent: controlsDiv, attr: [['class', 'right-arrow']]}); 
+        const imgArrowRight = new Image();
+        imgArrowRight.src = arrowR;
+        imgArrowRight.setAttribute('class', 'filter-white');
+        imgArrowRight.style.cssText = 'width: 33px; height: 33px;';
+        rightArrow.appendChild(imgArrowRight); 
 
         h1.textContent = 'What Says Our Customers';
     };
