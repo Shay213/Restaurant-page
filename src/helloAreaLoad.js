@@ -1,4 +1,5 @@
 import createElement from "./createElement";
+import person from './img/icons/person.svg';
 
 const helloAreaLoad = (function (){
     const content = document.getElementById('content');
@@ -39,7 +40,9 @@ const helloAreaLoad = (function (){
             button.textContent = 'Order Online';
 
             li1.classList.add('active');
-            a1.innerHTML = '<img class="filter-white" src="../src/img/icons/person.svg" width="23px" height="23px"/>';
+            const iconPerson = new Image();
+            iconPerson.src = person;
+            a1.appendChild(iconPerson);
             a2.innerHTML = '<img class="filter-white" src="../src/img/icons/shopping-cart.svg" width="23px" height="23px"/>';
             a3.innerHTML = '<img class="filter-white" src="../src/img/icons/search.svg" width="23px" height="23px"/>';
         }
