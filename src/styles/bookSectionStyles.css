@@ -46,12 +46,59 @@
 
 .book-section iframe{
     width: 100%;
-    height: 100%;
+    height: 450px;
     border-radius: 10px;
 }
 
 .book-section button{
+    margin: 0 auto;
     margin-top: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
+    width: 200px;
+}
+
+.book-section input:focus{
+    outline-color: var(--yellow-color);
+}
+
+.book-section input ~ p{
+    transform: scale(0);
+    transition: transform 500ms;
+    display: none;
+}
+
+.book-section input.valid{
+    border-color: rgb(0, 189, 0);
+    outline-color: rgb(0, 189, 0);
+}
+
+.book-section input.invalid,
+.book-section input.required{
+    border-color: rgb(255, 37, 37);
+    outline-color: rgb(255, 37, 37);
+}
+
+.book-section input.invalid ~ p:first-of-type{
+    color: rgb(255, 37, 37);
+    transform: scale(1);
+    transition: transform 500ms;
+    display: block;
+}
+
+.book-section input.required ~ p:nth-of-type(2){
+    color: rgb(255, 37, 37);
+    transform: scale(1);
+    transition: transform 500ms;
+    display: block;
+}
+
+@media only screen and (max-width: 990px){
+    .book-section .flex-container{
+        flex-direction: column;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .book-section h1{
+        text-align: center;
+    }
 }
